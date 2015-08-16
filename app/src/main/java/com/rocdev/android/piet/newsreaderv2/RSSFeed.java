@@ -2,7 +2,6 @@ package com.rocdev.android.piet.newsreaderv2;
 
 import android.annotation.SuppressLint;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +17,7 @@ public class RSSFeed {
             new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
 
     public RSSFeed() {
-        items = new ArrayList<RSSItem>();
+        items = new ArrayList<>();
     }
 
     public void setTitle(String title) {
@@ -42,9 +41,11 @@ public class RSSFeed {
             Date date = dateInFormat.parse(pubDate.trim());
             return date.getTime();
         }
-        catch (ParseException e) {
-            throw new RuntimeException(e);
+        catch (Exception e) {
+//            throw new RuntimeException(e);
+            return -1;
         }
+
     }
 
     public int addItem(RSSItem item) {

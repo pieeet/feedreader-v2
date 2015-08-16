@@ -23,7 +23,7 @@ import javax.xml.parsers.SAXParserFactory;
 public class FileIO{
 
 //    private final String URL_STRING = "http://rss.cnn.com/rss/cnn_tech.rss";
-    private final String URL_STRING = "http://www.nrc.nl/tech/rss.php";
+    private final String URL_STRING = "feed://feeds.feedburner.com/androidworld/zHTD?format=xml";
 //    private final String URL_STRING = "http://ao.roc-dev.com/feed.html";
     private final String FILENAME = "news_feed.xml";
     private Context context;
@@ -86,8 +86,7 @@ public class FileIO{
             xmlreader.parse(is);
 
             // set the feed in the activity
-            RSSFeed feed = theRssHandler.getFeed();
-            return feed;
+            return theRssHandler.getFeed();
         }
         catch (Exception e) {
             Log.e("News reader", e.toString());

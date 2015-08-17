@@ -12,6 +12,7 @@ public class RSSFeedHandler extends DefaultHandler {
     private RSSItem item;
 
     private boolean feedTitleHasBeenRead = false;
+    private boolean feedPubDateHasBeenRead = false;
     private boolean isTitle = false;
     private boolean isFeedTitle1 = false;
     private boolean isFeedTitle2 = false;
@@ -19,6 +20,7 @@ public class RSSFeedHandler extends DefaultHandler {
     private boolean isFeedDescription = false;
     private boolean isLink = false;
     private boolean isPubDate = false;
+    private String pubDate;
 
     public RSSFeed getFeed() {
         return feed;
@@ -28,6 +30,7 @@ public class RSSFeedHandler extends DefaultHandler {
     public void startDocument() throws SAXException {
         feed = new RSSFeed();
         item = new RSSItem();
+        pubDate = "";
     }
 
     @Override
@@ -97,6 +100,10 @@ public class RSSFeedHandler extends DefaultHandler {
             isItemDescription = false;
         }
         else if (isPubDate) {
+            if (!feedPubDateHasBeenRead) {
+                feed.setPubDate(s);
+                feedPubDateHasBeenRead = true;
+            }
             item.setPubDate(s);
             isPubDate = false;
         }

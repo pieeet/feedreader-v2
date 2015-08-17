@@ -1,6 +1,7 @@
 package com.rocdev.android.piet.newsreaderv2;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,7 +44,9 @@ public class RSSFeed {
         }
         catch (Exception e) {
 //            throw new RuntimeException(e);
+            Log.d("News reader feed", e.getMessage());
             return -1;
+
         }
 
     }

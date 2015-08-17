@@ -49,41 +49,10 @@ public class NewsReaderService extends Service {
     }
 
     private void startTimer() {
-//        TimerTask task = new TimerTask() {
-//
-//            @Override
-//            public void run() {
-//                Log.d("News reader", "Timer task started");
-//
-//                io.downloadFile();
-//                Log.d("News reader", "File downloaded");
-//
-//                RSSFeed newFeed = io.readFile();
-//                Log.d("News reader", "File read");
-//
-//                Log.d("News reader", "new feedPubDate: " + newFeed.getPubDateMillis());
-//                Log.d("News reader", "app feedPubDate" + app.getFeedMillis());
-//
-//                // if new feed is newer than old feed
-//                if (newFeed.getPubDateMillis() > app.getFeedMillis()) {
-//                    Log.d("News reader", "Updated feed available.");
-//
-//                    // update app object
-//                    app.setFeedMillis(newFeed.getPubDateMillis());
-//
-//                    // display notification
-//                    sendNotification("Nieuwe feed beschikbaar.");
-//                }
-//                else {
-//                    Log.d("News reader", "Updated feed NOT available.");
-//                }
-//
-//            }
-//        };
         TimerTaak taak = new TimerTaak();
         timer = new Timer(true);
-        int delay = 1000 * 60 * 60;      // 1 uur
-        int interval = 1000 * 60 * 60;   // 1 uur
+        int delay = 1000 * 60 ;      // 1 minuut
+        int interval = 1000 * 60 * 30;   // half uur
         timer.schedule(taak, delay, interval);
     }
 
@@ -105,7 +74,7 @@ public class NewsReaderService extends Service {
 
         // create the variables for the notification
         int icon = R.drawable.ic_launcher_2;
-        CharSequence tickerText = "Updated news feed is available";
+        CharSequence tickerText = "Nieuwe feed beschikbaar";
         CharSequence contentTitle = getText(R.string.app_name);
         CharSequence contentText = text;
 

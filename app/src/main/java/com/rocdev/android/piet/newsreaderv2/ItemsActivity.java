@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -83,7 +84,6 @@ public class ItemsActivity extends ActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
             feed = io.readFile();
-            //app.setFeedMillis(feed.getPubDateMillis());
             return null;
         }
 

@@ -1,6 +1,7 @@
 package com.rocdev.android.piet.newsreaderv2;
 
 /**
+ *
  * Created by Piet on 25-5-2015.
  */
 import android.app.Notification;
@@ -74,17 +75,15 @@ public class NewsReaderService extends Service {
 
         // create the variables for the notification
         int icon = R.drawable.ic_launcher_2;
-        CharSequence tickerText = "Nieuwe feed beschikbaar";
         CharSequence contentTitle = getText(R.string.app_name);
-        CharSequence contentText = text;
 
         // create the notification and set its data
         Notification notification =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(icon)
-                        .setTicker(tickerText)
+                        .setTicker("Nieuwe feed beschikbaar")
                         .setContentTitle(contentTitle)
-                        .setContentText(contentText)
+                        .setContentText(text)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true)
                         .build();
@@ -96,7 +95,7 @@ public class NewsReaderService extends Service {
         manager.notify(NOTIFICATION_ID, notification);
     }
 
-    class TimerTaak extends TimerTask {
+    private class TimerTaak extends TimerTask {
 
         @Override
         public void run() {

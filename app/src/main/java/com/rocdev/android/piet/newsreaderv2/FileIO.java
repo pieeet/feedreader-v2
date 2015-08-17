@@ -18,15 +18,16 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 /**
+ *
  * Created by Piet on 15-5-2015.
  */
-public class FileIO{
+class FileIO{
 
-//    private final String URL_STRING = "http://rss.cnn.com/rss/cnn_tech.rss";
-    private final String URL_STRING = "http://feeds.feedburner.com/androidworld/zHTD?format=xml";
+
+
 //    private final String URL_STRING = "http://ao.roc-dev.com/feed.html";
     private final String FILENAME = "news_feed.xml";
-    private Context context;
+    private final Context context;
 
     public FileIO(Context context) {
         this.context = context;
@@ -42,6 +43,7 @@ public class FileIO{
         if (networkInfo != null && networkInfo.isConnected()) {
             try{
                 // get the URL
+                String URL_STRING = "http://feeds.feedburner.com/androidworld/zHTD?format=xml";
                 URL url = new URL(URL_STRING);
 
                 // get the input stream

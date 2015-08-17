@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
+ *
  * Created by Piet on 14-5-2015.
  */
 public class ItemActivity extends ActionBarActivity implements View.OnClickListener {

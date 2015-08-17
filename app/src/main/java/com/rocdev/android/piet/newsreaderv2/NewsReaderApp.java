@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 /**
+ *
  * Created by Piet on 25-5-2015.
  */
 public class NewsReaderApp extends Application {

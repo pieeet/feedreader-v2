@@ -12,7 +12,7 @@ import java.util.Locale;
 public class RSSFeed {
     private String title = null;
     private String pubDate = null;
-    private ArrayList<RSSItem> items;
+    private final ArrayList<RSSItem> items;
 
     private SimpleDateFormat dateInFormat =
             new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
@@ -33,10 +33,6 @@ public class RSSFeed {
         this.pubDate = pubDate;
     }
 
-    public String getPubDate() {
-        return pubDate;
-    }
-
     public long getPubDateMillis() {
         try {
             Date date = dateInFormat.parse(pubDate.trim());
@@ -51,9 +47,8 @@ public class RSSFeed {
 
     }
 
-    public int addItem(RSSItem item) {
+    public void addItem(RSSItem item) {
         items.add(item);
-        return items.size();
     }
 
     public RSSItem getItem(int index) {

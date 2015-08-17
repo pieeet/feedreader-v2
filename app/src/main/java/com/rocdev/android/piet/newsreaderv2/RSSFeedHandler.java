@@ -5,22 +5,23 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
+ *
  * Created by Piet on 7-3-2015.
  */
-public class RSSFeedHandler extends DefaultHandler {
+class RSSFeedHandler extends DefaultHandler {
     private RSSFeed feed;
     private RSSItem item;
+    private boolean feedTitleHasBeenRead;
+    private boolean feedPubDateHasBeenRead;
+    private boolean isTitle;
+    private boolean isFeedTitle1;
+    private boolean isFeedTitle2;
+    private boolean isItemDescription;
+    private boolean isFeedDescription;
+    private boolean isLink;
+    private boolean isPubDate;
 
-    private boolean feedTitleHasBeenRead = false;
-    private boolean feedPubDateHasBeenRead = false;
-    private boolean isTitle = false;
-    private boolean isFeedTitle1 = false;
-    private boolean isFeedTitle2 = false;
-    private boolean isItemDescription = false;
-    private boolean isFeedDescription = false;
-    private boolean isLink = false;
-    private boolean isPubDate = false;
-    private String pubDate;
+
 
     public RSSFeed getFeed() {
         return feed;
@@ -29,8 +30,16 @@ public class RSSFeedHandler extends DefaultHandler {
     @Override
     public void startDocument() throws SAXException {
         feed = new RSSFeed();
-        item = new RSSItem();
-        pubDate = "";
+        feedTitleHasBeenRead = false;
+        feedPubDateHasBeenRead = false;
+        isTitle = false;
+        isFeedTitle1 = false;
+        isFeedTitle2 = false;
+        isItemDescription = false;
+        isFeedDescription = false;
+        isLink = false;
+        isPubDate = false;
+
     }
 
     @Override
@@ -72,7 +81,6 @@ public class RSSFeedHandler extends DefaultHandler {
     {
         if (qName.equals("item")) {
             feed.addItem(item);
-            return;
         }
     }
 

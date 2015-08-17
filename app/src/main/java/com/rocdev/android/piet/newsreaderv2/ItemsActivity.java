@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -26,7 +25,7 @@ public class ItemsActivity extends ActionBarActivity
     private RSSFeed feed;
     private FileIO io;
     private NewsReaderApp app;
-    private long feedPubDateMillis;
+
     private TextView titleTextView;
     private ListView itemsListView;
 
@@ -48,6 +47,7 @@ public class ItemsActivity extends ActionBarActivity
     @Override
     protected void onResume() {
         super.onResume();
+        long feedPubDateMillis;
         //get feed from app object
         feedPubDateMillis = app.getFeedMillis();
         if (feedPubDateMillis == -1) {
@@ -64,7 +64,7 @@ public class ItemsActivity extends ActionBarActivity
         }
     }
 
-    class DownloadFeed extends AsyncTask<Void, Void, Void> {
+    private class DownloadFeed extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             io.downloadFile();
@@ -79,7 +79,7 @@ public class ItemsActivity extends ActionBarActivity
         }
     }
 
-    class ReadFeed extends AsyncTask<Void, Void, Void> {
+    private class ReadFeed extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -97,7 +97,7 @@ public class ItemsActivity extends ActionBarActivity
         }
     }
 
-    public void updateDisplay() {
+    private void updateDisplay() {
         if (feed == null) {
             titleTextView.setText("Unable to get RSS feed");
             return;
@@ -111,9 +111,9 @@ public class ItemsActivity extends ActionBarActivity
 
         // create a List of Map<String, ?> objects
         ArrayList<HashMap<String, String>> data =
-                new ArrayList();
+                new ArrayList<>();
         for (RSSItem item : items) {
-            HashMap<String, String> map = new HashMap<String, String>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("date", item.getPubDateFormatted());
             map.put("title", item.getTitle());
             data.add(map);
